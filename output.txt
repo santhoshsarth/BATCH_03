@@ -1,0 +1,7 @@
+Bar Chart
+Histogram
+Histogram with KDE
+Box Plot
+Pair Plot
+Label-encoded tips dataset
+Correlation Heatmap
