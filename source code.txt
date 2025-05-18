@@ -1,0 +1,61 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder
+
+# 1. Bar Chart
+categories = ['A', 'B', 'C', 'D']
+values = [10, 25, 15, 30]
+
+plt.figure(figsize=(6, 4))
+plt.bar(categories, values, color='purple')
+plt.xlabel("Categories")
+plt.ylabel("Values")
+plt.title("Bar Chart Example")
+plt.show()
+
+# 2. Histogram
+data = np.random.randn(1000)
+
+plt.figure(figsize=(7, 5))
+plt.hist(data, bins=30, color='green', edgecolor='black', alpha=0.7)
+plt.xlabel("Value")
+plt.ylabel("Frequency")
+plt.title("Histogram Example")
+plt.show()
+
+# 3. Histogram with KDE
+df = pd.DataFrame(data, columns=['Values'])
+
+sns.histplot(df['Values'], bins=30, kde=True, color='blue')
+plt.title("Histogram with KDE")
+plt.xlabel("Value")
+plt.ylabel("Frequency")
+plt.show()
+
+# 4. Box Plot of 'total_bill'
+tips = sns.load_dataset('tips')
+
+plt.figure(figsize=(6, 4))
+sns.boxplot(x=tips['total_bill'])
+plt.title("Box Plot of Total Bill")
+plt.xlabel("Total Bill")
+plt.show()
+
+# 5. Pair Plot
+sns.pairplot(tips, hue='sex')
+plt.show()
+
+# 6. Label Encoding for categorical columns
+encoder = LabelEncoder()
+for col in ['sex', 'smoker', 'day', 'time']:
+    tips[col] = encoder.fit_transform(tips[col])
+
+# 7. Correlation Heatmap
+corr_matrix = tips.corr()
+
+plt.figure(figsize=(7, 5))
+sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt=".2f")
+plt.title("Correlation Heatmap")
+plt.show()
